@@ -9,12 +9,21 @@ import json
 import os
 from dotenv import load_dotenv
 import cowsay
+import random
 
 load_dotenv()
 
-print(cowsay.get_output_string('trex', 'Мощный парсер'))
-print(cowsay.get_output_string('stegosaurus', 'Истину глаголите'))
+bakemono = ['beavis', 'cheese', 'cow', 'daemon', 'dragon', 'fox', 'ghostbusters', 'kitty', 'meow', 'miki', 'milk', 'pig', 'stegosaurus', 'stimpy', 'trex', 'turkey', 'turtle', 'tux']
+phrases = ['Опа, здрасьте', 'Чо надо ?', 'Опять ты ?', 'Опять работать ?', 'Я устал, я ухожу', 'Ты знал что парсинг это незаконно ?', 'Почему ты каждый раз вызываешь меня ?',
+           'Хватит, пожалуйста', 'Ты издеваешься ?', 'Надоело...']
 
+bakemono_number = random.randint(0, 17)
+phrase_number = random.randint(0, 9)
+
+print_bakemono = bakemono[bakemono_number]
+print_phrase = phrases[phrase_number]
+
+print(cowsay.get_output_string(print_bakemono, print_phrase))
 
 # Connect to Postgres database
 conn = psycopg2.connect(database=os.getenv('DB_NAME'),
