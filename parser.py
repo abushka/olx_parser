@@ -8,11 +8,13 @@ from telegram.ext import Updater
 import json
 import os
 from dotenv import load_dotenv
+import cowsay
 
 load_dotenv()
 
-print('Are you ready ?')
-print('Go :)')
+print(cowsay.get_output_string('trex', 'Мощный парсер'))
+print(cowsay.get_output_string('stegosaurus', 'Истину глаголите'))
+
 
 # Connect to Postgres database
 conn = psycopg2.connect(database=os.getenv('DB_NAME'),
@@ -100,10 +102,9 @@ def scrape_olx():
     while True:
         if page_number > int(os.getenv('PAGE_LIMIT')):
             break
-        print(page_number)
         # URL of the page to scrape
-        # TODO КАК ЖЕ ЗАЕБАЛ ЭТОТ OLX СУКАААААААА ДАЙ МНЕ БЛЯТЬ ВТОРУЮ СТРАНИЦУ ПРОЧЕКАТЬ ПИДОР
-        url = f'https://www.olx.uz/d/list/?page=1&q=&search[order]=created_at:desc'
+        # url = f'https://www.olx.uz/d/list/?page=2'
+        url = f'https://www.olx.uz/list/?page={page_number}&q=&search[order]=created_at:desc'
         # url = f'https://www.olx.uz/d/list/?page=1&q=&search[order]=price:asc'
 
         # Send a GET request to the URL and get the page content
