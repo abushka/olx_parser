@@ -98,7 +98,7 @@ def scrape_listing(listing_url):
             conn.commit()
 
             # Send a message to the Telegram user
-            message = f"Заголовок: {title}\nСсылка: {link}\nЦена: {price}\nВремя Опубликованования: {date_posted}\nПродавец: {seller}\nОписание: {description}"
+            message = f"Заголовок: {title}\n\nСсылка: {link}\n\nЦена: {price}\n\nВремя Опубликованования: {date_posted}\n\nПродавец: {seller}\n\nОписание: {description}"
             if len(message) > 4096:
                 for x in range(0, len(message), 4096):
                     bot.send_message(message.chat.id, message[x:x+4096])
