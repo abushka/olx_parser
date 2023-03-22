@@ -26,11 +26,11 @@ print_phrase = phrases[phrase_number]
 print(cowsay.get_output_string(print_bakemono, print_phrase))
 
 # Connect to Postgres database
-conn = psycopg2.connect(database=os.getenv('DB_NAME'),
-                        user=os.getenv('DB_USER'),
-                        password=os.getenv('DB_PASSWORD'),
-                        host=os.getenv('DB_HOST'),
-                        port=os.getenv('DB_PORT'))
+conn = psycopg2.connect(database=os.getenv('POSTGRES_DB'),
+                        user=os.getenv('POSTGRES_USER'),
+                        password=os.getenv('POSTGRES_PASSWORD'),
+                        host=os.getenv('POSTGRES_HOST'),
+                        port=os.getenv('POSTGRES_PORT'))
 cur = conn.cursor()
 cur.execute("""
     CREATE TABLE IF NOT EXISTS listings (
@@ -143,11 +143,11 @@ def scrape_olx():
 
 def main():
     while True:
-        conn = psycopg2.connect(database=os.getenv('DB_NAME'),
-                                user=os.getenv('DB_USER'),
-                                password=os.getenv('DB_PASSWORD'),
-                                host=os.getenv('DB_HOST'),
-                                port=os.getenv('DB_PORT'))
+        conn = psycopg2.connect(database=os.getenv('POSTGRES_DB'),
+                                user=os.getenv('POSTGRES_USER'),
+                                password=os.getenv('POSTGRES_PASSWORD'),
+                                host=os.getenv('POSTGRES_HOST'),
+                                port=os.getenv('POSTGRES_PORT'))
         cur = conn.cursor()
         # Scrape OLX and send messages every timeout
         scrape_olx()
